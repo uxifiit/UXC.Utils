@@ -1,4 +1,7 @@
-﻿using GazeDataTimestampCorrection.Serialization.Json.Converters;
+﻿using CommandLine;
+using CommandLine.Text;
+using GazeDataTimestampCorrection.Serialization.Json.Converters;
+using GazeDataTimestampCorrection.Statistics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +10,9 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UXI.GazeFilter;
+using UXI.GazeFilter.Statistics;
 using UXI.GazeToolkit.Serialization;
+using UXI.GazeToolkit.Serialization.Csv;
 using UXI.GazeToolkit.Serialization.Json;
 
 namespace GazeDataTimestampCorrection
@@ -30,7 +35,13 @@ namespace GazeDataTimestampCorrection
         {
             context.Formats = new Collection<IDataSerializationFactory>()
             {
-                new JsonSerializationFactory(new GazeDataTimestampJsonConverter())
+                new JsonSerializationFactory(new GazeDataTimestampJsonConverter()),
+                new CsvSerializationFactory()
+            };
+
+            context.Statistics = new Collection<IFilterStatisticsFactory>()
+            {
+                new TimestampsDiffStatisticsFactory()
             };
         }
 
@@ -43,16 +54,12 @@ namespace GazeDataTimestampCorrection
 
                 timestamps.Do(d => data.Add(d)).Wait();
 
-                long minTicksDiff = data.Min(d => d.OriginalTicks - d.ReferenceTicks);
+                data.Sort((a, b) => a.ReferenceTicks.CompareTo(b.ReferenceTicks));
 
-                List<GazeDataTimestamp> newData = data.OrderBy(d => d.ReferenceTicks).ToList();
+                long minTicksDiff = data.Min(d => d.Ticks - d.ReferenceTicks);
 
-                foreach (var item in newData)
-                {
-                    item.NewTicks = item.ReferenceTicks + minTicksDiff;
-                }
-
-                return data.ToObservable()
+                return data.Select(d => new GazeDataTimestamp(d.Payload, d.ReferenceTicks + minTicksDiff, d.ReferenceTicks, d.Offset))
+                           .ToObservable()
                            .Publish().RefCount()
                            .Subscribe(observer);
             });

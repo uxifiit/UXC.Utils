@@ -39,7 +39,7 @@ namespace GazeDataTimestampCorrection.Serialization.Json.Converters
         {
             JObject obj = value.Payload;
 
-            var newTimestamp = new DateTimeOffset(EpochTicks + value.NewTicks, value.Offset);
+            var newTimestamp = new DateTimeOffset(EpochTicks + value.Ticks, value.Offset);
 
             obj["Timestamp"] = JRaw.FromObject(newTimestamp, serializer);
 

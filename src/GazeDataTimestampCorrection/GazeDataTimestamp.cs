@@ -9,17 +9,16 @@ namespace GazeDataTimestampCorrection
 {
     class GazeDataTimestamp
     {
-        public GazeDataTimestamp(JObject payload, long originalTicks, long referenceTicks, TimeSpan offset)
+        public GazeDataTimestamp(JObject payload, long ticks, long referenceTicks, TimeSpan offset)
         {
             Payload = payload;
-            OriginalTicks = originalTicks;
+            Ticks = ticks;
             ReferenceTicks = referenceTicks;
             Offset = offset;
         }
 
-        public long OriginalTicks { get; }
+        public long Ticks { get; }
         public long ReferenceTicks { get; }
-        public long NewTicks { get; set; }
         public TimeSpan Offset { get; }
         public JObject Payload { get; }
     }
