@@ -56,7 +56,7 @@ namespace GazeDataTimestampCorrection
 
                 data.Sort((a, b) => a.ReferenceTicks.CompareTo(b.ReferenceTicks));
 
-                long minTicksDiff = data.Min(d => d.Ticks - d.ReferenceTicks);
+                long minTicksDiff = data.Select(d => d.Ticks - d.ReferenceTicks).DefaultIfEmpty(0).Min();
 
                 return data.Select(d => new GazeDataTimestamp(d.Payload, d.ReferenceTicks + minTicksDiff, d.ReferenceTicks, d.Offset))
                            .ToObservable()
