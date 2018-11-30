@@ -50,9 +50,7 @@ namespace GazeDataTimestampCorrection
         {
             return Observable.Create<GazeDataTimestamp>(observer =>
             {
-                List<GazeDataTimestamp> data = new List<GazeDataTimestamp>();
-
-                timestamps.Do(d => data.Add(d)).Wait();
+                List<GazeDataTimestamp> data = timestamps.ToEnumerable().ToList();
 
                 data.Sort((a, b) => a.ReferenceTicks.CompareTo(b.ReferenceTicks));
 

@@ -28,9 +28,6 @@ namespace GazeDataTimestampCorrection.Serialization.Json.Converters
             var timestamp = obj["Timestamp"].ToObject<DateTimeOffset>(serializer);
             long timestampUnixTicks = timestamp.Ticks - EpochTicks;
 
-            //if (timestampUnixTicks < minTicks) { minTicks = timestampUnixTicks; }
-            //if (timestampUnixTicks > maxTicks) { maxTicks = timestampUnixTicks; }
-
             return new GazeDataTimestamp(obj, timestampUnixTicks, trackerTicks, timestamp.Offset);
         }
 
