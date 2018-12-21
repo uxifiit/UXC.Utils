@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UXI.GazeToolkit.Serialization.Json.Converters;
+using UXI.Serialization.Json.Converters;
 
 namespace GazeDataTimestampCorrection.Serialization.Json.Converters
 {
-    class GazeDataTimestampJsonConverter : UXI.GazeToolkit.Serialization.Json.Converters.JsonConverter<GazeDataTimestamp>
+    class GazeDataTimestampJsonConverter : GenericJsonConverter<GazeDataTimestamp>
     {
         private static readonly long EpochTicks = DateTimeOffset.FromUnixTimeSeconds(0).Ticks;
 

@@ -14,6 +14,8 @@ using UXI.GazeFilter.Statistics;
 using UXI.GazeToolkit.Serialization;
 using UXI.GazeToolkit.Serialization.Csv;
 using UXI.GazeToolkit.Serialization.Json;
+using UXI.Serialization;
+using UXI.Serialization.Json;
 
 namespace GazeDataTimestampCorrection
 {
@@ -25,7 +27,7 @@ namespace GazeDataTimestampCorrection
         {
             return new SingleFilterHost<Options>
             (
-                context => Configure(context),
+                (context, options) => Configure(context),
                 new RelayFilter<GazeDataTimestamp, GazeDataTimestamp, Options>(CorrectTimestamps)
             ).Execute(args);
         }
@@ -33,16 +35,10 @@ namespace GazeDataTimestampCorrection
 
         private static void Configure(FilterContext context)
         {
-            context.Formats = new Collection<IDataSerializationFactory>()
-            {
-                new JsonSerializationFactory(new GazeDataTimestampJsonConverter()),
-                new CsvSerializationFactory()
-            };
-
-            context.Statistics = new Collection<IFilterStatisticsFactory>()
-            {
-                new TimestampsDiffStatisticsFactory()
-            };
+            context.Formats
+                   .FirstOrDefault(f => f.Format == FileFormat.JSON)?
+                   .Configurations
+                   .Add(new JsonConvertersSerializationConfiguration(new GazeDataTimestampJsonConverter()));
         }
 
 

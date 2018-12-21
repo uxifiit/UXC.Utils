@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UXI.GazeFilter.Statistics;
 using UXI.GazeToolkit.Serialization;
+using UXI.Serialization;
 
 namespace GazeDataTimestampCorrection.Statistics
 {
