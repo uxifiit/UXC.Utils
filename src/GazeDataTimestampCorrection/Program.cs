@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using CommandLine.Text;
+using GazeDataTimestampCorrection.Serialization.Csv.Converters;
 using GazeDataTimestampCorrection.Serialization.Json.Converters;
 using GazeDataTimestampCorrection.Statistics;
 using System;
@@ -15,6 +16,7 @@ using UXI.GazeToolkit.Serialization;
 using UXI.GazeToolkit.Serialization.Csv;
 using UXI.GazeToolkit.Serialization.Json;
 using UXI.Serialization;
+using UXI.Serialization.Csv;
 using UXI.Serialization.Json;
 
 namespace GazeDataTimestampCorrection
@@ -39,6 +41,16 @@ namespace GazeDataTimestampCorrection
                    .FirstOrDefault(f => f.Format == FileFormat.JSON)?
                    .Configurations
                    .Add(new JsonConvertersSerializationConfiguration(new GazeDataTimestampJsonConverter()));
+
+            context.Formats
+                   .FirstOrDefault(f => f.Format == FileFormat.CSV)?
+                   .Configurations
+                   .Add(new CsvConvertersSerializationConfiguration(new TimestampsDiffCsvConverter()));
+
+            context.Statistics = new Collection<IFilterStatisticsFactory>()
+            {
+                new TimestampsDiffStatisticsFactory()
+            };
         }
 
 

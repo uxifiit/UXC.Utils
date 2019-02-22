@@ -42,9 +42,10 @@ namespace GazeDataTimestampCorrection.Statistics
             public int Count { get; private set; }
 
             public long MinTicks { get; private set; } = Int64.MaxValue;
+
             public long MaxTicks { get; private set; } = Int64.MinValue;
 
-            public long Duration => Count > 0 ? MaxTicks - MinTicks : 0;
+            public long Duration => Count > 0 ? MaxTicks - MinTicks : 0L;
 
             public void OnNext(object value)
             {

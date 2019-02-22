@@ -8,7 +8,7 @@ namespace GazeDataTimestampCorrection.Statistics
 {
     class TimestampsDiff
     {
-        public TimestampsDiff(int count, double duration, double newDuration, double startOffset, double endOffset, double durationChange)
+        public TimestampsDiff(int count, long duration, long newDuration, long startOffset, long endOffset, long durationChange)
         {
             Count = count;
             Duration = duration;
@@ -19,10 +19,10 @@ namespace GazeDataTimestampCorrection.Statistics
         }
 
         public int Count { get; }
-        public double Duration { get; }
-        public double NewDuration { get; }
-        public double StartOffset { get; }
-        public double EndOffset { get; }
-        public double DurationChange { get; }
+        public long Duration { get; }
+        public long NewDuration { get; }
+        public long StartOffset { get; }
+        public long EndOffset { get; }
+        public long DurationChange { get; }
     }
 }
