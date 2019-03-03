@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GazeDataTimestampCorrection", "src\GazeDataTimestampCorrection\GazeDataTimestampCorrection.csproj", "{910FCD7A-57B9-42A7-9AFC-709CC9BBE918}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimestampCorrection", "src\TimestampCorrection\TimestampCorrection.csproj", "{910FCD7A-57B9-42A7-9AFC-709CC9BBE918}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96CFEDE5-D5AE-41CC-97DD-2FD980D31D44}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

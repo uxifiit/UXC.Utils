@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CsvHelper;
-using GazeDataTimestampCorrection.Statistics;
+using TimestampCorrection.Statistics;
 using UXI.Serialization.Csv;
 using UXI.Serialization.Csv.Converters;
 
-namespace GazeDataTimestampCorrection.Serialization.Csv.Converters
+namespace TimestampCorrection.Serialization.Csv.Converters
 {
     class TimestampsDiffCsvConverter : CsvConverter<TimestampsDiff>
     {

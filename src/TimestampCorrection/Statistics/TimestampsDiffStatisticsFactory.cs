@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using UXI.GazeFilter;
 using UXI.GazeFilter.Statistics;
 
-namespace GazeDataTimestampCorrection.Statistics
+namespace TimestampCorrection.Statistics
 {
     class TimestampsDiffStatisticsFactory : IFilterStatisticsFactory
     {
-        public bool CanCreate(Type type) => true;
+        public bool CanCreate(Type filterType) => true;
 
         public IFilterStatistics Create(IFilter filter, object options)
         {

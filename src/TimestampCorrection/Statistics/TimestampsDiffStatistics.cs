@@ -5,15 +5,16 @@ using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 using UXI.GazeFilter.Statistics;
+using UXI.GazeToolkit;
 using UXI.GazeToolkit.Serialization;
 using UXI.Serialization;
 
-namespace GazeDataTimestampCorrection.Statistics
+namespace TimestampCorrection.Statistics
 {
     class TimestampsDiffStatistics : IFilterStatistics
     {
-        private readonly GazeDataTimestampCounter _inputCounter = new GazeDataTimestampCounter();
-        private readonly GazeDataTimestampCounter _outputCounter = new GazeDataTimestampCounter();
+        private readonly TimestampedDataCounter _inputCounter = new TimestampedDataCounter();
+        private readonly TimestampedDataCounter _outputCounter = new TimestampedDataCounter();
 
         public Type DataType { get; } = typeof(TimestampsDiff);
 
@@ -37,7 +38,7 @@ namespace GazeDataTimestampCorrection.Statistics
         }
 
 
-        private class GazeDataTimestampCounter : IObserver<object>
+        private class TimestampedDataCounter : IObserver<object>
         {
             public int Count { get; private set; }
 
@@ -49,19 +50,21 @@ namespace GazeDataTimestampCorrection.Statistics
 
             public void OnNext(object value)
             {
-                if (value is GazeDataTimestamp)
+                if (value is ITimestampedData)
                 {
-                    var data = (GazeDataTimestamp)value;
+                    var data = (ITimestampedData)value;
                     Count += 1;
 
-                    if (data.Ticks < MinTicks)
+                    long ticks = data.Timestamp.Ticks;
+
+                    if (ticks < MinTicks)
                     {
-                        MinTicks = data.Ticks;
+                        MinTicks = ticks;
                     }
 
-                    if (data.Ticks > MaxTicks)
+                    if (ticks > MaxTicks)
                     {
-                        MaxTicks = data.Ticks;
+                        MaxTicks = ticks;
                     }
                 }
             }
