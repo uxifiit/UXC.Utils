@@ -1,7 +1,6 @@
 # UXC.Utils
 
-###### Utility and support tools for UXC.
-
+A repository with utility and support tools for UXC.
 
 ## TimestampCorrection
 
@@ -40,7 +39,7 @@ TimestampCorrection.exe ET_data.json ^
 --reference-timestamp-format ticks:us
 ```
 
-Note, the character `^` only breaks up long Windows command line on multiple lines for readability.
+Note, the character `^` only breaks up a long Windows command line to multiple lines for readability.
 
 
 ## How to build
@@ -65,7 +64,6 @@ Use [Issues](issues) to request features, report bugs, or discuss ideas.
 * [CsvHelper](https://github.com/JoshClose/CsvHelper)
 * [CommandLineParser](https://github.com/commandlineparser/commandline)
 * [Newtonsoft.Json](https://www.newtonsoft.com/json)
-* and others
 
 ## Authors
 
