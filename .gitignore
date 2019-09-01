@@ -17,6 +17,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 
+# Local NuGet directory
+[Ll]ib/
+
 # Roslyn cache directories
 *.ide/
 

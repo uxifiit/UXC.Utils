@@ -6,9 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UXI.GazeToolkit;
-using UXI.GazeToolkit.Serialization.Converters;
-using UXI.GazeToolkit.Serialization.Json.Converters;
+using UXI.Filters.Serialization.Converters;
 using UXI.Serialization.Json.Converters;
 
 namespace TimestampCorrection.Serialization.Json.Converters
