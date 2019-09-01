@@ -23,7 +23,7 @@ namespace TimestampCorrection.Configuration
                                              ? TimestampStringConverterResolver.Default.Resolve(options.ReferenceTimestampFormat)
                                              : TimestampStringConverterResolver.Default.Resolve(options.TimestampFormat);
 
-            var dataConverter = new DoublyTimestampedDataJsonConverter
+            var jsonConverter = new DoublyTimestampedDataJsonConverter
                                 (
                                     options.TimestampFieldName,
                                     options.ReferenceTimestampFieldName,
@@ -34,13 +34,7 @@ namespace TimestampCorrection.Configuration
                    .Formats
                    .GetOrDefault(FileFormat.JSON)?
                    .Configurations
-                   .Add(new JsonConvertersSerializationConfiguration(dataConverter));
-
-            context.IO
-                   .Formats
-                   .GetOrDefault(FileFormat.CSV)?
-                   .Configurations
-                   .Add(new CsvConvertersSerializationConfiguration(new TimestampsDiffCsvConverter()));
+                   .Add(new JsonConvertersSerializationConfiguration(jsonConverter));
         }
     }
 }
