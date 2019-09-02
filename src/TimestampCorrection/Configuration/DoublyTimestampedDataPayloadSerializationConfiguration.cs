@@ -15,15 +15,15 @@ using UXI.Serialization.Json.Configurations;
 
 namespace TimestampCorrection.Configuration
 {
-    public class DoublyTimestampedDataSerializationConfiguration : FilterConfiguration<IDoublyTimestampedDataSerializationOptions>
+    public class DoublyTimestampedDataPayloadSerializationConfiguration : FilterConfiguration<IDoublyTimestampedDataPayloadSerializationOptions>
     {
-        protected override void ConfigureOverride(FilterContext context, IDoublyTimestampedDataSerializationOptions options)
+        protected override void ConfigureOverride(FilterContext context, IDoublyTimestampedDataPayloadSerializationOptions options)
         {
             var referenceTimestampConverter = (String.IsNullOrWhiteSpace(options.ReferenceTimestampFormat) == false)
                                              ? TimestampStringConverterResolver.Default.Resolve(options.ReferenceTimestampFormat)
                                              : TimestampStringConverterResolver.Default.Resolve(options.TimestampFormat);
 
-            var jsonConverter = new DoublyTimestampedDataJsonConverter
+            var jsonConverter = new DoublyTimestampedDataPayloadJsonConverter
                                 (
                                     options.TimestampFieldName,
                                     options.ReferenceTimestampFieldName,

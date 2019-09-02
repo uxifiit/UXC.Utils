@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace TimestampCorrection
 {
-    public interface ITimestampedData
+    public class DoublyTimestampedDataPayload : ITimestampedData
     {
-        DateTimeOffset Timestamp { get; }
-    }
-
-    public class DoublyTimestampedData : ITimestampedData
-    {
-        public DoublyTimestampedData(JObject payload, DateTimeOffset timestamp, DateTimeOffset referenceTimestamp)
+        public DoublyTimestampedDataPayload(JObject payload, DateTimeOffset timestamp, DateTimeOffset referenceTimestamp)
         {
             Payload = payload;
             Timestamp = timestamp;
