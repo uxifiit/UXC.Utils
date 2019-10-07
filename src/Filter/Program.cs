@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Filter.Configuration;
+using Filter.Observers;
 using UXI.Filters;
 using UXI.Filters.Configuration;
 using UXI.Filters.Serialization.Converters;
@@ -31,15 +32,16 @@ namespace Filter
         {
             ITimestampStringConverter timestampConverter = TimestampStringConverterResolver.Default.Resolve(options.TimestampFormat);
 
-            if (String.IsNullOrWhiteSpace(options.FromTimestampString) == false)
-            {
-                options.FromTimestamp = timestampConverter.Convert(options.FromTimestampString);
-            }
+            var selection = Selection.Parse(options.FromTimestamp, options.ToTimestamp, timestampConverter);
 
-            if (String.IsNullOrWhiteSpace(options.ToTimestampString) == false)
-            {
-                options.ToTimestamp = timestampConverter.Convert(options.ToTimestampString);
-            }
+            // TODO
+            var output = UXI.Filters.Common.FileHelper.DescribeOutput(options.OutputFilePath, null, null, null, null);
+
+            var observer = new FilteringObserver(selection, output);
+
+            context.Observers.Add(observer);
+            // create Selection
+            // create Output Observer with Selection
         }
 
 
@@ -54,7 +56,7 @@ namespace Filter
 
             if (options.ToTimestamp.HasValue)
             {
-                result = result.TakeWhile(d => d.Timestamp < options.ToTimestamp.Value);
+                result = result.TakeWhile(d => d.Timestamp <= options.ToTimestamp.Value);
             }
 
             return result;

@@ -37,7 +37,7 @@ namespace TimestampCorrection
         }
 
 
-        private static IObservable<DoublyTimestampedDataPayload> CorrectTimestamps(IObservable<DoublyTimestampedDataPayload> timestamps, Options options, FilterContext context)
+        private static IObservable<DoublyTimestampedDataPayload> CorrectTimestamps(IObservable<DoublyTimestampedDataPayload> timestamps, BaseOptions options, FilterContext context)
         {
             return Observable.Create<DoublyTimestampedDataPayload>(observer =>
             {
