@@ -19,10 +19,15 @@ namespace TimestampCorrection.Statistics
         }
 
         public int Count { get; }
+
         public long Duration { get; }
+
         public long NewDuration { get; }
+
         public long StartOffset { get; }
+
         public long EndOffset { get; }
+
         public long DurationChange { get; }
     }
 }

@@ -1,23 +1,23 @@
-﻿using CommandLine.Text;
-using TimestampCorrection.Serialization.Csv.Converters;
-using TimestampCorrection.Serialization.Json.Converters;
-using TimestampCorrection.Statistics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UXI.Serialization.Csv;
-using UXI.Serialization.Json;
+using CommandLine.Text;
 using UXI.Filters;
 using UXI.Serialization.Extensions;
 using UXI.Filters.Common.Extensions;
 using UXI.Filters.Serialization.Converters;
-using UXI.Serialization.Json.Configurations;
-using UXI.Serialization.Csv.Configurations;
+using UXI.Serialization.Formats.Csv;
+using UXI.Serialization.Formats.Csv.Configurations;
+using UXI.Serialization.Formats.Json;
+using UXI.Serialization.Formats.Json.Configurations;
 using TimestampCorrection.Configuration;
+using TimestampCorrection.Serialization.Csv.Converters;
+using TimestampCorrection.Serialization.Json.Converters;
+using TimestampCorrection.Statistics;
 
 namespace TimestampCorrection
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UXI.Filters;
 using UXI.Filters.Observers;
 
-namespace Filter.Observers
+namespace Selector.Observers
 {
     class FilteringObserver : FilterObserver
     {
@@ -27,8 +27,8 @@ namespace Filter.Observers
                 {
                     var payload = (TimestampedDataPayload)value;
                     if (
-                            (_selection.FromTimestamp.HasValue == false || _selection.FromTimestamp.Value < payload.Timestamp)
-                         && (_selection.ToTimestamp.HasValue == false   || _selection.ToTimestamp.Value  >= payload.Timestamp)
+                            (_selection.From.HasValue == false || _selection.From.Value < payload.Timestamp)
+                         && (_selection.To.HasValue == false   || _selection.To.Value  >= payload.Timestamp)
                        )
                     {
                         resultsObserver.OnNext(value);

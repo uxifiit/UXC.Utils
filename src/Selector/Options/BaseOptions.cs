@@ -2,7 +2,7 @@
 using UXI.Serialization;
 using UXI.Filters.Options;
 
-namespace Filter
+namespace Selector
 {
     public class BaseOptions
         : IInputOptions

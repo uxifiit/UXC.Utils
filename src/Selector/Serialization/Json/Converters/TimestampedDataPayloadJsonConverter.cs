@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UXI.Filters.Serialization.Converters;
-using UXI.Serialization.Json.Converters;
+using UXI.Serialization.Formats.Json.Converters;
 
-namespace Filter.Serialization.Json.Converters
+namespace Selector.Serialization.Json.Converters
 {
     class TimestampedDataPayloadJsonConverter : GenericJsonConverter<TimestampedDataPayload>
     {

@@ -9,9 +9,8 @@ namespace TimestampCorrection
         , IOutputOptions
         , ILogOptions
         , ITimestampSerializationOptions
-        //, IPrettyFormatOptions
     {
-        [Value(0, HelpText = "Path to the input file. If omitted, standard input stream is used.", MetaName = "input file", MetaValue = "FILE", Required = false)]
+        [Value(0, HelpText = "Path to the input file. If omitted, standard input is used.", MetaName = "input file", MetaValue = "FILE", Required = false)]
         public virtual string InputFilePath { get; set; }
 
 
@@ -39,8 +38,5 @@ namespace TimestampCorrection
 
         [Option("timestamp-format", HelpText = "Format of timestamps in data.", Required = false)]
         public virtual string TimestampFormat { get; set; }
-
-        //[Option("format-pretty", Default = false, HelpText = "Enables pretty formatting of outputs. If any output (for example --output-format, --log-format) is set to JSON, the JSON is indented.", Required = false)]
-        //public virtual bool IsPrettyFormatEnabled { get; set; }
     }
 }

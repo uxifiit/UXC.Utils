@@ -18,7 +18,13 @@ namespace TimestampCorrection
                                     .DefaultIfEmpty(0)
                                     .Min();
 
-            return data.Select(d => new DoublyTimestampedDataPayload(d.Payload, d.ReferenceTimestamp.AddTicks(minTicksDiff).ToOffset(d.Timestamp.Offset), d.ReferenceTimestamp));
+            return data.Select(d => new DoublyTimestampedDataPayload(
+                                        d.Payload, 
+                                        d.ReferenceTimestamp
+                                         .AddTicks(minTicksDiff)
+                                         .ToOffset(d.Timestamp.Offset),
+                                        d.ReferenceTimestamp)
+                              );
         }
     }
 }

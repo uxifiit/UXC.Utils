@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TimestampCorrection.Serialization.Csv.Converters;
-using TimestampCorrection.Statistics;
 using UXI.Filters;
 using UXI.Filters.Configuration;
 using UXI.Serialization;
-using UXI.Serialization.Csv.Configurations;
+using UXI.Serialization.Formats.Csv.Configurations;
 using UXI.Serialization.Extensions;
+using TimestampCorrection.Serialization.Csv.Converters;
+using TimestampCorrection.Statistics;
 
 namespace TimestampCorrection.Configuration
 {

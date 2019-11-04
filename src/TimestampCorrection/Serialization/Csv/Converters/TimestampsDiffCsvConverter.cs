@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CsvHelper;
 using TimestampCorrection.Statistics;
-using UXI.Serialization.Csv;
-using UXI.Serialization.Csv.Converters;
+using UXI.Serialization.Formats.Csv;
+using UXI.Serialization.Formats.Csv.Converters;
 
 namespace TimestampCorrection.Serialization.Csv.Converters
 {

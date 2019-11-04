@@ -12,7 +12,7 @@ namespace TimestampCorrection
         public override FileFormat InputFileFormat
         {
             get { return FileFormat.Default; }
-            set { throw new NotSupportedException("Input file format is forced to Default and can not be changed."); }
+            set { } // Input file format is forced to Default and can not be changed.
         }
 
 
@@ -21,8 +21,8 @@ namespace TimestampCorrection
 
         public override FileFormat OutputFileFormat
         {
-            get { return FileFormat.Default; }
-            set { throw new NotSupportedException("Output file format is forced to Default and can not be changed."); }
+            get { return InputFileFormat; }
+            set { } // Output file format is forced to be the same as input file format."); 
         }
 
 

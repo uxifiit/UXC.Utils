@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Filter
+namespace Selector
 {
     public interface ITimestampedData
     {

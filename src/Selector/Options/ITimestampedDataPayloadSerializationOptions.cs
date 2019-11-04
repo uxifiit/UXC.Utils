@@ -1,6 +1,6 @@
 ﻿using UXI.Filters.Options;
 
-namespace Filter
+namespace Selector
 {
     public interface ITimestampedDataPayloadSerializationOptions : ITimestampSerializationOptions
     {
