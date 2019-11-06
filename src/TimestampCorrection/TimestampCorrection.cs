@@ -8,9 +8,9 @@ namespace TimestampCorrection
 {
     public class TimestampCorrection
     {
-        public static IEnumerable<DoublyTimestampedData> Correct(IEnumerable<DoublyTimestampedData> source)
+        public static IEnumerable<DoublyTimestampedDataPayload> Correct(IEnumerable<DoublyTimestampedDataPayload> source)
         {
-            List<DoublyTimestampedData> data = source.ToList();
+            List<DoublyTimestampedDataPayload> data = source.ToList();
 
             data.Sort((a, b) => a.ReferenceTimestamp.CompareTo(b.ReferenceTimestamp));
 
@@ -18,7 +18,13 @@ namespace TimestampCorrection
                                     .DefaultIfEmpty(0)
                                     .Min();
 
-            return data.Select(d => new DoublyTimestampedData(d.Payload, d.ReferenceTimestamp.AddTicks(minTicksDiff).ToOffset(d.Timestamp.Offset), d.ReferenceTimestamp));
+            return data.Select(d => new DoublyTimestampedDataPayload(
+                                        d.Payload, 
+                                        d.ReferenceTimestamp
+                                         .AddTicks(minTicksDiff)
+                                         .ToOffset(d.Timestamp.Offset),
+                                        d.ReferenceTimestamp)
+                              );
         }
     }
 }

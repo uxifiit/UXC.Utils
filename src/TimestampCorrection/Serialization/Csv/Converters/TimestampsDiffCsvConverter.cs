@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CsvHelper;
 using TimestampCorrection.Statistics;
-using UXI.Serialization.Csv;
-using UXI.Serialization.Csv.Converters;
+using UXI.Serialization.Formats.Csv;
+using UXI.Serialization.Formats.Csv.Converters;
 
 namespace TimestampCorrection.Serialization.Csv.Converters
 {
@@ -14,22 +14,14 @@ namespace TimestampCorrection.Serialization.Csv.Converters
     {
         public override bool CanRead => false;
 
-        public override object ReadCsv(CsvReader reader, Type objectType, CsvSerializerContext serializer, CsvHeaderNamingContext naming)
+
+        protected override bool TryRead(CsvReader reader, CsvSerializerContext serializer, CsvHeaderNamingContext naming, ref TimestampsDiff result)
         {
             throw new NotSupportedException();
         }
 
-        public override void WriteCsvHeader(CsvWriter writer, Type objectType, CsvSerializerContext serializer, CsvHeaderNamingContext naming)
-        {
-            writer.WriteField(naming.Get(nameof(TimestampsDiff.Count)));
-            writer.WriteField(naming.Get(nameof(TimestampsDiff.Duration)));
-            writer.WriteField(naming.Get(nameof(TimestampsDiff.NewDuration)));
-            writer.WriteField(naming.Get(nameof(TimestampsDiff.StartOffset)));
-            writer.WriteField(naming.Get(nameof(TimestampsDiff.EndOffset)));
-            writer.WriteField(naming.Get(nameof(TimestampsDiff.DurationChange)));
-        }
 
-        protected override void WriteCsv(TimestampsDiff data, CsvWriter writer, CsvSerializerContext serializer)
+        protected override void Write(TimestampsDiff data, CsvWriter writer, CsvSerializerContext serializer)
         {
             writer.WriteField(data.Count);
             writer.WriteField(data.Duration);
@@ -37,6 +29,17 @@ namespace TimestampCorrection.Serialization.Csv.Converters
             writer.WriteField(data.StartOffset);
             writer.WriteField(data.EndOffset);
             writer.WriteField(data.DurationChange);
+        }
+
+
+        protected override void WriteHeader(CsvWriter writer, CsvSerializerContext serializer, CsvHeaderNamingContext naming)
+        {
+            writer.WriteField(naming.Get(nameof(TimestampsDiff.Count)));
+            writer.WriteField(naming.Get(nameof(TimestampsDiff.Duration)));
+            writer.WriteField(naming.Get(nameof(TimestampsDiff.NewDuration)));
+            writer.WriteField(naming.Get(nameof(TimestampsDiff.StartOffset)));
+            writer.WriteField(naming.Get(nameof(TimestampsDiff.EndOffset)));
+            writer.WriteField(naming.Get(nameof(TimestampsDiff.DurationChange)));
         }
     }
 }

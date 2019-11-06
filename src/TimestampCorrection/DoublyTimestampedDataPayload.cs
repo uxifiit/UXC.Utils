@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UXI.GazeToolkit;
 
 namespace TimestampCorrection
 {
-    public class DoublyTimestampedData : ITimestampedData
+    public class DoublyTimestampedDataPayload : ITimestampedData
     {
-        public DoublyTimestampedData(JObject payload, DateTimeOffset timestamp, DateTimeOffset referenceTimestamp)
+        public DoublyTimestampedDataPayload(JObject payload, DateTimeOffset timestamp, DateTimeOffset referenceTimestamp)
         {
             Payload = payload;
             Timestamp = timestamp;

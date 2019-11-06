@@ -6,20 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UXI.GazeToolkit;
-using UXI.GazeToolkit.Serialization.Converters;
-using UXI.GazeToolkit.Serialization.Json.Converters;
-using UXI.Serialization.Json.Converters;
+using UXI.Filters.Serialization.Converters;
+using UXI.Serialization.Formats.Json.Converters;
 
 namespace TimestampCorrection.Serialization.Json.Converters
 {
-    class DoublyTimestampedDataJsonConverter : GenericJsonConverter<DoublyTimestampedData>
+    class DoublyTimestampedDataPayloadJsonConverter : GenericJsonConverter<DoublyTimestampedDataPayload>
     {
         private readonly string _timestampField;
         private readonly string _referenceTimestampField;
         private readonly ITimestampStringConverter _referenceTimestampConverter;
 
-        public DoublyTimestampedDataJsonConverter(string timestampField, string referenceTimestampField, ITimestampStringConverter referenceTimestampConverter)
+        public DoublyTimestampedDataPayloadJsonConverter(string timestampField, string referenceTimestampField, ITimestampStringConverter referenceTimestampConverter)
         {
             _timestampField = timestampField;
             _referenceTimestampField = referenceTimestampField;
@@ -33,7 +31,7 @@ namespace TimestampCorrection.Serialization.Json.Converters
         public override bool CanWrite => true;
 
 
-        protected override DoublyTimestampedData Convert(JToken token, JsonSerializer serializer)
+        protected override DoublyTimestampedDataPayload Convert(JToken token, JsonSerializer serializer)
         {
             JObject obj = (JObject)token;
 
@@ -42,11 +40,11 @@ namespace TimestampCorrection.Serialization.Json.Converters
 
             var timestamp = obj[_timestampField].ToObject<DateTimeOffset>(serializer);
 
-            return new DoublyTimestampedData(obj, timestamp, referenceTimestamp);
+            return new DoublyTimestampedDataPayload(obj, timestamp, referenceTimestamp);
         }
 
 
-        protected override JToken ConvertBack(DoublyTimestampedData value, JsonSerializer serializer)
+        protected override JToken ConvertBack(DoublyTimestampedDataPayload value, JsonSerializer serializer)
         {
             JObject obj = value.Payload;
 
