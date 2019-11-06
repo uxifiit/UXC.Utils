@@ -1,4 +1,5 @@
 # UXC Utilities
+[![Build Status](https://dev.azure.com/uxifiit/UXC/_apis/build/status/uxifiit.UXC.Utils?branchName=master)](https://dev.azure.com/uxifiit/UXC/_build/latest?definitionId=8&branchName=master)
 
 This repository contains utility tools for additional processing of recording data from [UXC](https://github.com/uxifiit/UXC). 
 See README in each project to find out more information:
