@@ -1,21 +1,26 @@
 # UXC Utilities
 
-This repository contains utility tools for additional processing of data from UXC:
-* [Selector](tree/master/src/Selector) - for splitting large data files.
-* [TimestampCorrection](tree/master/src/TimestampCorrection) - for synchronizing timestamps in data.
-
-See README of each project to find out more information:
+This repository contains utility tools for additional processing of recording data from [UXC](https://github.com/uxifiit/UXC). 
+See README in each project to find out more information:
+* [TimestampCorrection](src/TimestampCorrection) - use to synchronize timestamps in data, especially eye tracking data from UXC.
+* [Selector](src/Selector) - use to split large data files.
 
 ## How to build
 
-Prerequisities: 
-* Visual Studio 2015 or 2017, or Visual Studio Build Tools
-* For building from the command line, create an environment variable leading to the NuGet CLI executable `nuget.exe` with name `nuget`.
+First, install Microsoft Visual Studio 2015 or 2017 or Visual Studio Build Tools.
 
-Build steps:
-* Clone the repository, use the `master` branch
-* Run the `build.bat`.
-* The built executables are located in project's `bin/Release` directories.
+To build the solution using the Visual Studio: 
+1. Open the `UXC.Utils.sln` in Visual Studio.
+2. Set up build target to `Release`.
+3. Build the solution (default hotkey <kbd>F6</kbd>).
+
+To build the solution using the included batch script: 
+1. Download [NuGet Windows Commandline](https://www.nuget.org/downloads), v4.9.x were tested.
+2. Create new environment variable named `nuget` with path set to the `nuget.exe` executable, e.g., `C:\Program Files (x86)\NuGet\nuget.exe`.
+3. Test the path in a new command line window with `echo %nuget%`.
+4. Run the `build.bat` script.
+
+Then, locate the build output in the `/build/Release/` directory.
 
 ## Contributing
 
@@ -23,8 +28,8 @@ Use [Issues](issues) to request features, report bugs, or discuss ideas.
 
 ## Dependencies
 
-* [UXI.Filters](https://github.com/uxifiit/Filters)
-* [UXI.Serialization](https://github.com/uxifiit/UXI.Serialization)
+* [UXIsk Filters Framework](https://github.com/uxifiit/Filters)
+* [UXIsk Data Serialization Library](https://github.com/uxifiit/UXI.Serialization)
 * [CommandLineParser](https://github.com/commandlineparser/commandline)
 * [CsvHelper](https://github.com/JoshClose/CsvHelper)
 * [Newtonsoft.Json](https://www.newtonsoft.com/json)
@@ -35,7 +40,9 @@ Use [Issues](issues) to request features, report bugs, or discuss ideas.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details
+This project is licensed under the 3-Clause BSD License - see the [LICENSE.txt](LICENSE.txt) file for details
+
+Copyright (c) 2019 Martin Konopka and Faculty of Informatics and Information Technologies, Slovak University of Technology in Bratislava.
 
 ## Contacts
 

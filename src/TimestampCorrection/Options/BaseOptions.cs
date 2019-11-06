@@ -25,11 +25,10 @@ namespace TimestampCorrection
         public virtual string OutputFilePath { get; set; }
 
 
-        [Option("output-format", Default = FileFormat.Default, HelpText = "Data format of the output. If not specified or the \"Default\" value used, it is the same as input file format.", Required = false)]
-        public virtual FileFormat OutputFileFormat { get; set; }
+        public virtual FileFormat OutputFileFormat { get { return InputFileFormat; } set { } }
         
 
-        public virtual FileFormat DefaultOutputFileFormat => FileFormat.JSON;
+        public virtual FileFormat DefaultOutputFileFormat => DefaultInputFileFormat;
 
 
         [Option('q', "quiet", Default = false, HelpText = "Suppress log messages.", Required = false)]
