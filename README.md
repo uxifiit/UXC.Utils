@@ -3,8 +3,8 @@
 
 This repository contains utility tools for additional processing of recording data from [UXC](https://github.com/uxifiit/UXC). 
 See README in each project to find out more information:
-* [TimestampCorrection](src/TimestampCorrection) - use to synchronize timestamps in data, especially eye tracking data from UXC.
-* [Selector](src/Selector) - use to split large data files.
+* [CorrectTimestamps](src/UXC.Utils.CorrectTimestamps) - use to synchronize timestamps in data, especially eye tracking data from UXC.
+* [Select](src/UXC.Utils.Select) - use to split large data files.
 
 ## How to build
 
