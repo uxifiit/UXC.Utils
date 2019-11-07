@@ -16,7 +16,6 @@ namespace Selector.Serialization.Csv.Converters
             DateTimeOffset? from, to;
             string name; 
 
-           
             if (
                     reader.TryGetField<DateTimeOffset?>(naming.Get(nameof(Selection.From)), out from)
                 &&  reader.TryGetField<DateTimeOffset?>(naming.Get(nameof(Selection.To)), out to)
