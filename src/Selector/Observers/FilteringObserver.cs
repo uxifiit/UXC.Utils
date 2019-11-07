@@ -27,8 +27,8 @@ namespace Selector.Observers
                 {
                     var payload = (TimestampedDataPayload)value;
                     if (
-                            (_selection.From.HasValue == false || _selection.From.Value < payload.Timestamp)
-                         && (_selection.To.HasValue == false   || _selection.To.Value  >= payload.Timestamp)
+                            (_selection.From.HasValue == false || _selection.From.Value <= payload.Timestamp)
+                         && (_selection.To.HasValue   == false || _selection.To.Value   >  payload.Timestamp)
                        )
                     {
                         resultsObserver.OnNext(value);

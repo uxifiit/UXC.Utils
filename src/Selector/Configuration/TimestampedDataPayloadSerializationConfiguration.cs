@@ -18,10 +18,7 @@ namespace Selector.Configuration
     {
         protected override void ConfigureOverride(FilterContext context, ITimestampedDataPayloadSerializationOptions options)
         {
-            var jsonConverter = new TimestampedDataPayloadJsonConverter
-                                (
-                                    options.TimestampFieldName
-                                );
+            var jsonConverter = new TimestampedDataPayloadJsonConverter(options.TimestampFieldName);
 
             context.IO
                    .Formats

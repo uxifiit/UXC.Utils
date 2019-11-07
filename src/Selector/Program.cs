@@ -9,6 +9,7 @@ using Selector.Configuration;
 using Selector.Observers;
 using UXI.Filters;
 using UXI.Filters.Configuration;
+using UXI.Filters.Observers;
 using UXI.Filters.Serialization.Converters;
 
 namespace Selector
@@ -17,23 +18,24 @@ namespace Selector
     {
         static int Main(string[] args)
         {
-            return new SingleFilterHost<SelectorOptions>
+            return new SingleFilterHost<SelectorContext, SelectorOptions>
             (
                 // filter:
-                new RelayFilter<TimestampedDataPayload, TimestampedDataPayload, SelectorOptions>((source, _, context) => Select(source, context)),
+                new RelayFilter<TimestampedDataPayload, TimestampedDataPayload, SelectorOptions, SelectorContext>((source, _, context) => Select(source, context)),
 
                 // configurations:
                 new TimestampedDataPayloadSerializationConfiguration(),
-                new RelayFilterConfiguration<SelectorOptions>(Configure)
+                new SelectionSerializationConfiguration(),
+                new RelayFilterConfiguration<SelectorContext, SelectorOptions>(Configure)
             ).Execute(args);
         }
 
 
-        private static IObservable<TimestampedDataPayload> Select(IObservable<TimestampedDataPayload> source, FilterContext context)
+        private static IObservable<TimestampedDataPayload> Select(IObservable<TimestampedDataPayload> source, SelectorContext context)
         {
             var result = source;
 
-            var selection = context.GlobalSelection;
+            var selection = context.Selection;
             if (selection != null)
             {
                 if (selection.From.HasValue)
@@ -51,9 +53,8 @@ namespace Selector
         }
 
 
-        private static void Configure(FilterContext context, SelectorOptions options)
+        private static void Configure(SelectorContext context, SelectorOptions options)
         {
-
             // read from options or config file
             var selections = Enumerable.Empty<Selection>();
 
@@ -72,32 +73,62 @@ namespace Selector
                 
                 observers.ForEach(context.Observers.Add);
 
-                context.GlobalSelection = Selection.Union(selections);
+                context.Selection = Selection.Union(selections);
             }
         }
 
 
-        private static object CreateObserversForSelections(IEnumerable<Selection> selections, SelectorOptions options)
+        private static IEnumerable<FilterObserver> CreateObserversForSelections(IEnumerable<Selection> selections, SelectorOptions options)
         {
+            HashSet<string> paths = new HashSet<string>();
+            List<FilteringObserver> observers = new List<FilteringObserver>();
 
+            foreach (var selection in selections)
+            {
+                string path = options.OutputFilePath;
+                string name = (selection.Name ?? String.Empty).Trim();
 
+                if (String.IsNullOrWhiteSpace(path) && String.IsNullOrWhiteSpace(name) == false)
+                {
+                    path = options.InputFilePath;
+                }
 
-            var output = UXI.Filters.Common.FileHelper.DescribeOutput(
-                           options.OutputFilePath,
-                           options.OutputFileFormat,
-                           options.DefaultOutputFileFormat,
-                           typeof(TimestampedDataPayload),
-                           Console.Out
-                       );
+                if (String.IsNullOrWhiteSpace(path) == false)
+                {
+                    if (path.Contains("{name}"))
+                    {
+                        path = path.Replace("{name}", name);
+                    }
+                    else if (String.IsNullOrWhiteSpace(name) == false)
+                    {
+                        path = Path.GetFileNameWithoutExtension(path) + $".{name}" + Path.GetExtension(path);
+                    }
+                }
 
-            var observer = new FilteringObserver(selection, output);
+                // use only unique paths
+                if (path != options.InputFilePath && paths.Add(path))
+                {
+                    var output = UXI.Filters.Common.FileHelper.DescribeOutput(
+                                   path,
+                                   options.InputFileFormat,
+                                   options.DefaultInputFileFormat,
+                                   typeof(TimestampedDataPayload),
+                                   (String.IsNullOrWhiteSpace(path)) ? Console.Out : TextWriter.Null  // use Console.Out for empty path only
+                               );
+
+                    observers.Add(new FilteringObserver(selection, output));
+                }
+            }
+
+            return observers;
         }
+
 
         private static IEnumerable<Selection> ReadSelectionFromOptions(SelectorOptions options)
         {
             ITimestampStringConverter timestampConverter = TimestampStringConverterResolver.Default.Resolve(options.TimestampFormat);
 
-            var selection = Selection.Parse(options.FromTimestamp, options.ToTimestamp, timestampConverter);
+            var selection = Selection.Parse(options.Name, options.FromTimestamp, options.ToTimestamp, timestampConverter);
 
             return new[] { selection };
         }
@@ -109,46 +140,10 @@ namespace Selector
             {
                 throw new FileNotFoundException($"Config file not found at the location: {path}");
             }
-
-            var configSelections = context.IO.ReadInput<Selection>(path, UXI.Serialization.FileFormat.Default);
+            
+            var configSelections = context.IO.ReadInput<Selection>(path, UXI.Filters.Common.FileHelper.ResolveFormatFromPath(path));
 
             return configSelections.ToArray();
-        }
-
-
-        /*
-            name
-            from
-            to
-            file (optional)
-            
-            if no file, use format + name, default format is {name}.JSON
-            if even no name, use index as name
-            if no format, use output file as format, add suffix ".{name}" before extension
-
-
-
-
-
-
-            
-         */
-
-        private static void x()
-        {
-            IEnumerable<Selection> selections = null;
-
-            // get main selection
-            bool hasMinimum = selections.Select(s => s.From).Contains(null) == false;
-            bool hasMaximum = selections.Select(s => s.To).Contains(null) == false;
-
-            if (hasMinimum)
-            {
-
-            }
-
-
-
         }
     }
 }
