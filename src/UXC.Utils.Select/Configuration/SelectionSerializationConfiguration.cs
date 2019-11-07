@@ -22,7 +22,6 @@ namespace UXC.Utils.Select.Configuration
             ITimestampStringConverter timestampConverter = TimestampStringConverterResolver.Default.Resolve(options.TimestampFormat);
 
             var converters = new ISerializationConfiguration[] {
-                new CsvNullableDateTimeOffsetSerializationConfiguration(timestampConverter),
                 new CsvConvertersSerializationConfiguration(new SelectionCsvConverter())
             };
 

@@ -96,8 +96,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectContext.cs" />
     <Compile Include="Serialization\Csv\Converters\SelectionCsvConverter.cs" />
-    <Compile Include="Serialization\Csv\CsvNullableDateTimeOffsetSerializationConfiguration.cs" />
-    <Compile Include="Serialization\Csv\TypeConverters\NullableDateTimeOffsetTypeConverter.cs" />
     <Compile Include="Serialization\Json\Converters\TimestampedDataPayloadJsonConverter.cs" />
     <Compile Include="TimestampedDataPayload.cs" />
   </ItemGroup>
