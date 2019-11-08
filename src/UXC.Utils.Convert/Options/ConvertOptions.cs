@@ -9,10 +9,10 @@ using UXI.Serialization;
 
 namespace UXC.Utils.Convert
 {
-    abstract class ConvertOptions
+    public abstract class ConvertOptions
         : IInputOptions
         //, ILogOptions
-        , IOutputOptions // we handle the output configuration
+        , IOutputOptions
         , IPrettyFormatOptions
     {
         [Value(0, HelpText = "Path to the input file. If omitted, standard input stream is used.", MetaName = "input file", MetaValue = "FILE", Required = false)]
@@ -41,27 +41,27 @@ namespace UXC.Utils.Convert
         //public virtual bool SuppressMessages { get; set; }
 
 
-        [Option("format-pretty", Default = false, HelpText = "Enables pretty formatting of outputs. If any output (for example --output-format, --log-format) is set to JSON, the JSON is indented.", Required = false)]
+        [Option("format-pretty", Default = false, HelpText = "Enables pretty formatting of outputs. If the output format (--output-format) is set to JSON, the JSON is indented.", Required = false)]
         public virtual bool IsPrettyFormatEnabled { get; set; }
     }
 
 
 
     [Verb("gaze")]
-    class ConvertGazeDataOptions : ConvertOptions { }
+    public class ConvertGazeDataOptions : ConvertOptions { }
 
 
 
     [Verb("external")]
-    class ConvertExternalEventDataOptions : ConvertOptions { }
+    public class ConvertExternalEventDataOptions : ConvertOptions { }
 
 
 
     [Verb("keyboard")]
-    class ConvertKeyboardEventDataOptions : ConvertOptions { }
+    public class ConvertKeyboardEventDataOptions : ConvertOptions { }
 
     
 
     [Verb("mouse")]
-    class ConvertMouseEventDataOptions : ConvertOptions { }
+    public class ConvertMouseEventDataOptions : ConvertOptions { }
 }

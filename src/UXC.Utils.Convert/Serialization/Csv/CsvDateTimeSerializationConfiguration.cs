@@ -6,7 +6,7 @@ using UXI.Serialization.Formats.Csv;
 
 namespace UXC.Utils.Convert.Serialization.Csv
 {
-    public class CsvDateTimeSerializationConfiguration : SerializationConfiguration<CsvSerializerContext>
+    class CsvDateTimeSerializationConfiguration : SerializationConfiguration<CsvSerializerContext>
     {
         public CsvDateTimeSerializationConfiguration()
         {
