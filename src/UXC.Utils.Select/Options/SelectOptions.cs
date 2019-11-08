@@ -10,11 +10,9 @@ namespace UXC.Utils.Select
 {
     class SelectOptions
         : IInputOptions
-        , ILogOptions
+        //, ILogOptions
         , ITimestampSerializationOptions
         , ITimestampedDataPayloadSerializationOptions
-        //, IOutputOptions // we handle the output configuration
-        //, IPrettyFormatOptions
     {
         [Value(0, HelpText = "Path to the input file. If omitted, standard input stream is used.", MetaName = "input file", MetaValue = "FILE", Required = false)]
         public virtual string InputFilePath { get; set; }
@@ -31,8 +29,8 @@ namespace UXC.Utils.Select
         public virtual string OutputFilePath { get; set; }
 
 
-        [Option('q', "quiet", Default = false, HelpText = "Suppress log messages.", Required = false)]
-        public virtual bool SuppressMessages { get; set; }
+        //[Option('q', "quiet", Default = false, HelpText = "Suppress log messages.", Required = false)]
+        //public virtual bool SuppressMessages { get; set; }
 
 
         [Option("timestamp-format", HelpText = "Format of timestamps in data.", Required = false)]
@@ -57,9 +55,5 @@ namespace UXC.Utils.Select
 
         [Option('n', "name", Default = null, HelpText = "Name of the selection range specified with --timestamp-from and --timestamp-to, used to replace the {name} placeholder in output path.", Required = false)]
         public string Name { get; set; }
-
-        
-        //[Option("format-pretty", Default = false, HelpText = "Enables pretty formatting of outputs. If any output (for example --output-format, --log-format) is set to JSON, the JSON is indented.", Required = false)]
-        //public virtual bool IsPrettyFormatEnabled { get; set; }
     }
 }
