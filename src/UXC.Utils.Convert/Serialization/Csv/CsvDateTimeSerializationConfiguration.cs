@@ -13,7 +13,7 @@ namespace UXC.Utils.Convert.Serialization.Csv
         }
 
 
-        protected override CsvSerializerContext Configure(CsvSerializerContext serializer, DataAccess access, object settings)
+        protected override CsvSerializerContext Configure(CsvSerializerContext serializer, DataAccess access, Type dataType, object settings)
         {
             serializer.Configuration.TypeConverterCache.AddConverter<DateTime>(new DateTimeTypeConverter());
 
