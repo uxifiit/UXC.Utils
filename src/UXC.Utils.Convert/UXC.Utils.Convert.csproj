@@ -93,8 +93,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Serialization\Csv\CsvDateTimeSerializationConfiguration.cs" />
-    <Compile Include="Serialization\Csv\TypeConverters\DateTimeTypeConverter.cs" />
     <Compile Include="Configuration\PrettyFormatFilterConfiguration.cs" />
     <Compile Include="Configuration\UXCDataSerializationFilterConfiguration.cs" />
     <Compile Include="Options\ConvertOptions.cs" />

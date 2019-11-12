@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UXC.Core.Data.Serialization.Formats.Csv;
 using UXC.Core.Data.Serialization.Formats.Json;
-using UXC.Utils.Convert.Serialization.Csv;
 using UXI.Filters;
 using UXI.Filters.Configuration;
 using UXI.Serialization;
@@ -29,13 +28,9 @@ namespace UXC.Utils.Convert.Configuration
                    .Formats
                    .GetOrDefault(FileFormat.CSV)?
                    .Configurations
-                   .AddRange
+                   .Add
                    (
-                       new ISerializationConfiguration[]
-                       {
-                            new CsvDateTimeSerializationConfiguration(),
-                            new UXCDataCsvConvertersSerializationConfiguration()
-                       }
+                       new UXCDataCsvConvertersSerializationConfiguration()
                    );
         }
     }
