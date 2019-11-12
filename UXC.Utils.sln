@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Utils.Select", "src\UXC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Utils.Convert", "src\UXC.Utils.Convert\UXC.Utils.Convert.csproj", "{F59461D9-DA99-4A3E-80D5-ECE0CAEEA3B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Utils.MapToOgama", "src\UXC.Utils.MapToOgama\UXC.Utils.MapToOgama.csproj", "{44FE27B8-A168-43D7-8E61-B4F7AE2880D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{F59461D9-DA99-4A3E-80D5-ECE0CAEEA3B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F59461D9-DA99-4A3E-80D5-ECE0CAEEA3B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F59461D9-DA99-4A3E-80D5-ECE0CAEEA3B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44FE27B8-A168-43D7-8E61-B4F7AE2880D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44FE27B8-A168-43D7-8E61-B4F7AE2880D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44FE27B8-A168-43D7-8E61-B4F7AE2880D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44FE27B8-A168-43D7-8E61-B4F7AE2880D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
