@@ -75,8 +75,8 @@
     <Reference Include="UXC.Core.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXC.Core.Interfaces.1.4.0\lib\net452\UXC.Core.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="UXI.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UXI.Common.3.0.0\lib\net45\UXI.Common.dll</HintPath>
+    <Reference Include="UXI.Common, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UXI.Common.3.1.0\lib\net45\UXI.Common.dll</HintPath>
     </Reference>
     <Reference Include="UXI.Configuration, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXI.Configuration.3.0.0\lib\net452\UXI.Configuration.dll</HintPath>
