@@ -13,14 +13,14 @@ namespace UXC.Utils.CorrectTimestamps
         , ITimestampsDiffStatisticsOptions
         , IDoublyTimestampedDataPayloadSerializationOptions
     {
-        [Value(0, HelpText = "Path to the input file. If omitted, standard input is used.", MetaName = "input file", MetaValue = "FILE", Required = false)]
+        [Value(0, HelpText = "Path to the input file in JSON format. If omitted, standard input is used.", MetaName = "input file", MetaValue = "FILE", Required = false)]
         public string InputFilePath { get; set; }
 
 
         public FileFormat InputFileFormat
         {
-            get { return FileFormat.Default; }
-            set { } // Input file format is forced to Default and can not be changed.
+            get { return FileFormat.JSON; }
+            set { } // Input file format is forced to JSON and can not be changed. JSON is the only supported format here now.
         }
 
 

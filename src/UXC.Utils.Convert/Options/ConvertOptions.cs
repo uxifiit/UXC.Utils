@@ -37,12 +37,12 @@ namespace UXC.Utils.Convert
         public virtual FileFormat DefaultOutputFileFormat => FileFormat.JSON;
 
 
-        //[Option('q', "quiet", Default = false, HelpText = "Suppress log messages.", Required = false)]
-        //public virtual bool SuppressMessages { get; set; }
-
-
         [Option("format-pretty", Default = false, HelpText = "Enables pretty formatting of outputs. If the output format (--output-format) is set to JSON, the JSON is indented.", Required = false)]
         public virtual bool IsPrettyFormatEnabled { get; set; }
+
+
+        //[Option('q', "quiet", Default = false, HelpText = "Suppress log messages.", Required = false)]
+        //public virtual bool SuppressMessages { get; set; }
     }
 
 

@@ -18,7 +18,7 @@ namespace UXC.Utils.Select
         public virtual string InputFilePath { get; set; }
 
 
-        [Option("format", Default = FileFormat.JSON, HelpText = "Data format of the input.")]
+        [Option("format", Default = FileFormat.Default, HelpText = "Data format of the input.")]
         public virtual FileFormat InputFileFormat { get; set; }
 
 
@@ -33,7 +33,7 @@ namespace UXC.Utils.Select
         //public virtual bool SuppressMessages { get; set; }
 
 
-        [Option("timestamp-format", HelpText = "Format of timestamps in data.", Required = false)]
+        [Option("timestamp-format", Default = "date", HelpText = "Format of timestamps in data.", Required = false)]
         public virtual string TimestampFormat { get; set; }
 
 
