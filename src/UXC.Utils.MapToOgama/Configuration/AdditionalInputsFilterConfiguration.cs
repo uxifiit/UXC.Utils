@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UXC.Core.Data;
+using UXC.Utils.MapToOgama.Data;
 using UXC.Utils.MapToOgama.Options;
 using UXI.Filters.Common;
 using UXI.Filters.Configuration;
@@ -18,7 +19,7 @@ namespace UXC.Utils.MapToOgama.Configuration
             context.InputMouseData = FileHelper.DescribeInput(
                                         options.InputMouseDataFilePath,
                                         options.InputMouseDataFileFormat,
-                                        options.DefaultMouseDataInputFileFormat,
+                                        options.DefaultInputMouseDataFileFormat,
                                         typeof(MouseEventData),
                                         TextReader.Null
                                     );
