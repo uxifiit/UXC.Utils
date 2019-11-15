@@ -84,8 +84,9 @@
     <Reference Include="UXI.Configuration, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXI.Configuration.3.0.0\lib\net452\UXI.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="UXI.Filters, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UXI.Filters.1.0.1\lib\net45\UXI.Filters.dll</HintPath>
+    <Reference Include="UXI.Filters, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UXI.Filters.1.1.0\lib\net45\UXI.Filters.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="UXI.GazeToolkit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXI.GazeToolkit.2.0.0\lib\net45\UXI.GazeToolkit.dll</HintPath>
