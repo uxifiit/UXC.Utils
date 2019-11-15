@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("UXC.Utils.MapToOgama")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("UXI@FIIT")]
 [assembly: AssemblyProduct("UXC.Utils.MapToOgama")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright © 2019 Faculty of Informatics and Information Technologies, Slovak University of Technology in Bratislava")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
