@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UXC.Core.Data;
 using UXC.Utils.MapToOgama.Data;
+using UXC.Utils.MapToOgama.Data.UXC;
 using UXC.Utils.MapToOgama.Options;
 using UXI.Filters.Common;
 using UXI.Filters.Configuration;

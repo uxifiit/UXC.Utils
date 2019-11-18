@@ -11,6 +11,7 @@ namespace UXC.Utils.MapToOgama
     class MapToOgamaContext : FilterContext
     {
         public InputDescriptor InputMouseData { get; set; }
+
         public InputDescriptor InputSessionEvents { get; set; }
 
         public Point2 ScreenResolution { get; set; }

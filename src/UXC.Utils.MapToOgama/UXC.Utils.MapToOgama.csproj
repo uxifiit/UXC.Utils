@@ -69,8 +69,8 @@
     <Reference Include="UXC.Core.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXC.Core.Data.1.4.0\lib\net452\UXC.Core.Data.dll</HintPath>
     </Reference>
-    <Reference Include="UXC.Core.Data.Compatibility.GazeToolkit, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UXC.Core.Data.Compatibility.GazeToolkit.1.4.0\lib\net452\UXC.Core.Data.Compatibility.GazeToolkit.dll</HintPath>
+    <Reference Include="UXC.Core.Data.Compatibility.GazeToolkit, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UXC.Core.Data.Compatibility.GazeToolkit.1.5.0\lib\net452\UXC.Core.Data.Compatibility.GazeToolkit.dll</HintPath>
     </Reference>
     <Reference Include="UXC.Core.Data.Serialization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXC.Core.Data.Serialization.2.0.0-alpha1\lib\net452\UXC.Core.Data.Serialization.dll</HintPath>
@@ -91,6 +91,9 @@
     <Reference Include="UXI.GazeToolkit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXI.GazeToolkit.2.0.0\lib\net45\UXI.GazeToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="UXI.GazeToolkit.Serialization, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UXI.GazeToolkit.Serialization.2.1.0\lib\net45\UXI.GazeToolkit.Serialization.dll</HintPath>
+    </Reference>
     <Reference Include="UXI.Serialization, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXI.Serialization.3.0.0\lib\net45\UXI.Serialization.dll</HintPath>
     </Reference>
@@ -101,20 +104,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AdditionalInputsFilterConfiguration.cs" />
+    <Compile Include="Configuration\OgamaDataSerializationFilterConfiguration.cs" />
     <Compile Include="Configuration\ScreenResolutionFilterConfiguration.cs" />
     <Compile Include="Configuration\UXCDataSerializationFilterConfiguration.cs" />
     <Compile Include="Data\SessionStepEvent.cs" />
     <Compile Include="MapToOgamaContext.cs" />
-    <Compile Include="Ogama\OgamaData.cs" />
-    <Compile Include="Ogama\Events\OgamaEvent.cs" />
-    <Compile Include="Ogama\Events\OgamaGazeEvent.cs" />
-    <Compile Include="Ogama\Events\OgamaMouseEvent.cs" />
-    <Compile Include="Ogama\Events\OgamaSessionStepEvent.cs" />
-    <Compile Include="Ogama\OgamaModel.cs" />
+    <Compile Include="Data\Ogama\OgamaData.cs" />
+    <Compile Include="Data\Ogama\Events\OgamaEvent.cs" />
+    <Compile Include="Data\Ogama\Events\OgamaGazeEvent.cs" />
+    <Compile Include="Data\Ogama\Events\OgamaMouseEvent.cs" />
+    <Compile Include="Data\Ogama\Events\OgamaSessionStepEvent.cs" />
+    <Compile Include="Data\Ogama\OgamaModel.cs" />
     <Compile Include="Options\IScreenResolutionOptions.cs" />
     <Compile Include="Options\MapToOgamaOptions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\Csv\OgamaDataCsvConverter.cs" />
     <Compile Include="Serialization\Json\SessionStepEventJsonConverter.cs" />
     <Compile Include="Serialization\Json\SessionStepActionJsonConverter.cs" />
   </ItemGroup>

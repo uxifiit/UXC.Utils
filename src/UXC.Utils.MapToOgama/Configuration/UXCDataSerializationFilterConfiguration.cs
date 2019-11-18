@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UXC.Core.Data.Serialization.Formats.Csv;
 using UXC.Core.Data.Serialization.Formats.Json;
-using UXC.Utils.MapToOgama.Ogama;
 using UXC.Utils.MapToOgama.Serialization.Json;
 using UXI.Filters;
 using UXI.Filters.Configuration;
@@ -45,16 +44,6 @@ namespace UXC.Utils.MapToOgama.Configuration
                        new ISerializationConfiguration[]
                        {
                            new UXCDataCsvConvertersSerializationConfiguration(),
-                           new RelaySerializationConfiguration<CsvSerializerContext>(
-                               (serializer, access, dataType, _) =>
-                               {
-                                   if (access == DataAccess.Write && dataType.Equals(typeof(OgamaData)))
-                                   {
-                                       serializer.Configuration.Delimiter = "\t";
-                                   }
-                                   return serializer;
-                               }
-                           )
                        }
                    );
         }

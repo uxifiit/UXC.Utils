@@ -1,7 +1,7 @@
 ﻿using System;
-using UXI.GazeToolkit;
+using UXC.Core.Data;
 
-namespace UXC.Utils.MapToOgama.Ogama.Events
+namespace UXC.Utils.MapToOgama.Data.Ogama.Events
 {
     public class OgamaMouseEvent : OgamaEvent
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UXC.Utils.MapToOgama.Ogama.Events
+namespace UXC.Utils.MapToOgama.Data.Ogama.Events
 {
     public abstract class OgamaEvent : IComparable, IComparable<OgamaEvent>
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using UXC.Utils.MapToOgama.Ogama.Events;
-using UXI.GazeToolkit;
+using UXC.Core.Data;
+using UXC.Utils.MapToOgama.Data.Ogama.Events;
 
-namespace UXC.Utils.MapToOgama.Ogama
+namespace UXC.Utils.MapToOgama.Data.Ogama
 {
     public class OgamaModel
     {

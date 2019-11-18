@@ -1,15 +1,15 @@
 ﻿using System;
-using UXI.GazeToolkit;
+using UXC.Core.Data;
 
-namespace UXC.Utils.MapToOgama.Ogama.Events
+namespace UXC.Utils.MapToOgama.Data.Ogama.Events
 {
     public class OgamaGazeEvent : OgamaEvent
     {
-        private readonly SingleEyeGazeData _gaze;
+        private readonly UXI.GazeToolkit.SingleEyeGazeData _gaze;
         private readonly double _resolutionWidth;
         private readonly double _resolutionHeight;
 
-        public OgamaGazeEvent(SingleEyeGazeData gaze, double resolutionWidth, double resolutionHeight)
+        public OgamaGazeEvent(UXI.GazeToolkit.SingleEyeGazeData gaze, double resolutionWidth, double resolutionHeight)
         {
             _gaze = gaze;
             _resolutionWidth = resolutionWidth;

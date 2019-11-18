@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UXI.Filters.Options;
+using UXI.GazeToolkit.Selection;
 using UXI.Serialization;
 
 namespace UXC.Utils.MapToOgama.Options
@@ -15,7 +16,7 @@ namespace UXC.Utils.MapToOgama.Options
         , IScreenResolutionOptions
     {
 
-        [Value(0, HelpText = "Path to the input file with UXC Gaze Data. If omitted, standard input stream is used.", MetaName = "input file", MetaValue = "FILE", Required = false)]
+        [Value(0, HelpText = "Path to the input file with UXC Gaze Data.", MetaName = "input", MetaValue = "GAZE_DATA_FILE", Required = false)] // If omitted, standard input stream is used. - It cannot be omitted because it is the first value.
         public virtual string InputFilePath { get; set; }
 
 
@@ -36,22 +37,22 @@ namespace UXC.Utils.MapToOgama.Options
         public virtual FileFormat DefaultOutputFileFormat => FileFormat.CSV;
 
 
-        [Value(1, HelpText = "Path to the input file with UXC Session Events.", MetaName = "input file", MetaValue = "FILE", Required = true)]
+        [Value(1, HelpText = "Path to the input file with UXC Session Events.", MetaName = "input", MetaValue = "SESSION_EVENTS_FILE", Required = true)]
         public virtual string InputSessionEventsFilePath { get; set; }
 
 
-        [Option("format", Default = FileFormat.Default, HelpText = "Data format of the input file with session events.")]
+        [Option("format-session", Default = FileFormat.Default, HelpText = "Data format of the input file with session events.")]
         public virtual FileFormat InputSessionEventsFileFormat { get; set; }
 
 
         public virtual FileFormat DefaultInputSessionEventsFileFormat => FileFormat.JSON;
 
 
-        [Value(2, HelpText = "Path to the input file with UXC Mouse Events.", MetaName = "input file", MetaValue = "FILE", Required = false)]
+        [Value(2, HelpText = "Path to the input file with UXC Mouse Events.", MetaName = "input", MetaValue = "MOUSE_DATA_FILE", Required = false)]
         public virtual string InputMouseDataFilePath { get; set; }
 
 
-        [Option("format", Default = FileFormat.Default, HelpText = "Data format of the input file with mouse events.")]
+        [Option("format-mouse", Default = FileFormat.Default, HelpText = "Data format of the input file with mouse events.")]
         public virtual FileFormat InputMouseDataFileFormat { get; set; }
 
 
@@ -68,5 +69,13 @@ namespace UXC.Utils.MapToOgama.Options
 
         [Option("resolution-height", Default = 1200, HelpText = "Screen resolution height in pixels.", Required = false)]
         public int ScreenResolutionHeight { get; set; }
+
+
+        [Option('e', "eye", Default = EyeSelectionStrategy.Average, HelpText = "Determines which eye to select from gaze data samples.", Required = false)]
+        public EyeSelectionStrategy EyeSelectionStrategy { get; set; }
+
+
+        [Option('s', "subject", HelpText = "Name of the participant, will appear in the SubjectName column in the output.", Required = true)]
+        public string SubjectName { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UXC.Utils.MapToOgama.Data
+namespace UXC.Utils.MapToOgama.Data.UXC
 {
     public class SessionStepEvent
     {
@@ -25,6 +25,8 @@ namespace UXC.Utils.MapToOgama.Data
         public SessionStepAction Step { get; set; }
     }
 
+
+
     public class SessionStepAction
     {
         public SessionStepAction(string actionType, string tag)
@@ -37,19 +39,4 @@ namespace UXC.Utils.MapToOgama.Data
 
         public string Tag { get; set; }
     }
-    /*
-| Where-Object -FilterScript { ($_.EventType -eq "StepStarted") -or ($_.EventType -eq "StepCompleted") } `
-| % { 
-    $obj = [Ordered]@{ "State" = $_.State ; "EventType" = $_.EventType ; "Timestamp" = $_.Timestamp }
-
-    if ($_.Step -And $_.Step.Action) {
-        $obj["Step"] = $_.Step.Action.ActionType
-        $obj["StepTag"] = $_.Step.Action.Tag
-        $obj["QuestionaryId"] = $_.Step.Action.Id
-    } 
-    else {
-        $obj["Step"] = $NULL
-    } 
-    [PSCustomObject]$obj
-     */
 }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using UXC.Core.Data;
 using UXC.Core.Data.Compatibility.GazeToolkit;
 using UXC.Utils.MapToOgama.Configuration;
-using UXC.Utils.MapToOgama.Data;
-using UXC.Utils.MapToOgama.Ogama;
-using UXC.Utils.MapToOgama.Ogama.Events;
+using UXC.Utils.MapToOgama.Data.Ogama;
+using UXC.Utils.MapToOgama.Data.Ogama.Events;
+using UXC.Utils.MapToOgama.Data.UXC;
 using UXC.Utils.MapToOgama.Options;
 using UXI.Filters;
 using UXI.Filters.Common.Extensions;
@@ -22,12 +22,13 @@ namespace UXC.Utils.MapToOgama
     {
         static int Main(string[] args)
         {
-            return new SingleFilterHost<MapToOgamaContext>
+            return new SingleFilterHost<MapToOgamaContext, MapToOgamaOptions>
             (
                 new RelayFilter<GazeData, OgamaData, MapToOgamaOptions, MapToOgamaContext>("Map to Ogama Data", MapToOgama),
                 new UXCDataSerializationFilterConfiguration(),
                 new ScreenResolutionFilterConfiguration(),
-                new AdditionalInputsFilterConfiguration()
+                new AdditionalInputsFilterConfiguration(),
+                new OgamaDataSerializationFilterConfiguration()
             ).Execute(args);
         }
 
@@ -35,15 +36,14 @@ namespace UXC.Utils.MapToOgama
         {
             return Observable.Create<OgamaData>(observer =>
             {
-                var model = new OgamaModel();
+                var model = new OgamaModel(options.SubjectName);
 
                 var mouse = context.IO.ReadInput<MouseEventData>(context.InputMouseData, null)
                                    .Select(ev => new OgamaMouseEvent(ev, context.ScreenResolution.X, context.ScreenResolution.Y));
                 var session = context.IO.ReadInput<SessionStepEvent>(context.InputSessionEvents, null)
                                      .Select(ev => new OgamaSessionStepEvent(ev));
 
-                var mergedEnum = mouse.Merge<OgamaEvent>(session, (m, s) => m.Timestamp.CompareTo(s.Timestamp))
-                                      .GetEnumerator();
+                var mergedEnum = mouse.Merge<OgamaEvent>(session).GetEnumerator();
 
                 bool hasNextOtherEvent = mergedEnum.MoveNext();
 
@@ -51,11 +51,11 @@ namespace UXC.Utils.MapToOgama
                 DateTimeOffset referenceTimestamp = DateTimeOffset.MinValue;
 
                 return gaze.Select(g => g.ToToolkit())
-                           .SelectEye(EyeSelectionStrategy.Average)
+                           .SelectEye(options.EyeSelectionStrategy)
                            .Select(eye => new OgamaGazeEvent(eye, context.ScreenResolution.X, context.ScreenResolution.Y))
                            .Subscribe(gazeEvent =>
                            {
-                               while (hasNextOtherEvent && mergedEnum.Current.Timestamp <= gazeEvent.Timestamp)
+                               while (hasNextOtherEvent && mergedEnum.Current.CompareTo(gazeEvent) <= 0)
                                {
                                    model.ReceiveEvent(mergedEnum.Current);
 
@@ -73,9 +73,8 @@ namespace UXC.Utils.MapToOgama
                                {
                                    observer.OnNext(model.GenerateData(referenceTimestamp));
                                }
-                           });
+                           }, ex => observer.OnError(ex), () => observer.OnCompleted());
             });
-            
         }
     }
 }

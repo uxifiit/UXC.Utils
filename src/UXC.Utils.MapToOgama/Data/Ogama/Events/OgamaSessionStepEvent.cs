@@ -1,7 +1,8 @@
 ﻿using System;
 using UXC.Utils.MapToOgama.Data;
+using UXC.Utils.MapToOgama.Data.UXC;
 
-namespace UXC.Utils.MapToOgama.Ogama.Events
+namespace UXC.Utils.MapToOgama.Data.Ogama.Events
 {
     public class OgamaSessionStepEvent : OgamaEvent
     {
@@ -18,7 +19,7 @@ namespace UXC.Utils.MapToOgama.Ogama.Events
         {
             base.Apply(state);
 
-            if (state.TrialImage != _event.Step.Tag)
+            if (_event.Step != null && state.TrialImage != _event.Step.Tag)
             {
                 state.TrialImage = _event.Step.Tag;
                 state.TrialSequence++;

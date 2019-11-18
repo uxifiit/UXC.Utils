@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UXC.Utils.MapToOgama.Data;
+using UXC.Utils.MapToOgama.Data.UXC;
 using UXI.Serialization.Formats.Json.Converters;
 using UXI.Serialization.Formats.Json.Extensions;
 

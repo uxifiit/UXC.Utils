@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UXI.GazeToolkit;
+using UXC.Core.Data;
 
-namespace UXC.Utils.MapToOgama.Ogama
+namespace UXC.Utils.MapToOgama.Data.Ogama
 {
     public class OgamaData
     {
@@ -30,20 +30,20 @@ namespace UXC.Utils.MapToOgama.Ogama
             MousePos = mousePos;
         }
 
-        string SubjectName { get; }
+        public string SubjectName { get; }
 
-        int TrialSequence { get; }
+        public int TrialSequence { get; }
         
-        int TrialID { get; }
+        public int TrialID { get; }
 
-        string TrialImage { get; }
+        public string TrialImage { get; }
 
-        double Time { get; }
+        public double Time { get; }
 
-        Point2 PupilDia { get; }
+        public Point2 PupilDia { get; }
 
-        Point2 GazePos { get; }
+        public Point2 GazePos { get; }
 
-        Point2 MousePos { get; }
+        public Point2 MousePos { get; }
     }
 }
