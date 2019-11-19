@@ -41,6 +41,7 @@ namespace UXC.Utils.MapToOgama
                 var mouse = context.IO.ReadInput<MouseEventData>(context.InputMouseData, null)
                                    .Select(ev => new OgamaMouseEvent(ev, context.ScreenResolution.X, context.ScreenResolution.Y));
                 var session = context.IO.ReadInput<SessionStepEvent>(context.InputSessionEvents, null)
+                                     .Where(ev => ev.EventType == "StepStarted")
                                      .Select(ev => new OgamaSessionStepEvent(ev));
 
                 var mergedEnum = mouse.Merge<OgamaEvent>(session).GetEnumerator();
