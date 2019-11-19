@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UXC.Core.Data;
+using UXI.GazeToolkit;
 
-namespace UXC.Utils.CorrectTimestamps.Data
+namespace UXC.Utils.CorrectGazeDataPositions.Data
 {
     public class DisplayArea
     {

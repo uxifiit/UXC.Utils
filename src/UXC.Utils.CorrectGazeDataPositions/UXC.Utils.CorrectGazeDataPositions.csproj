@@ -71,12 +71,11 @@
     <Reference Include="UXC.Core.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXC.Core.Data.1.4.0\lib\net452\UXC.Core.Data.dll</HintPath>
     </Reference>
-    <Reference Include="UXC.Core.Data.Compatibility.GazeToolkit, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UXC.Core.Data.Compatibility.GazeToolkit.1.4.0\lib\net452\UXC.Core.Data.Compatibility.GazeToolkit.dll</HintPath>
+    <Reference Include="UXC.Core.Data.Compatibility.GazeToolkit, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UXC.Core.Data.Compatibility.GazeToolkit.1.5.0\lib\net452\UXC.Core.Data.Compatibility.GazeToolkit.dll</HintPath>
     </Reference>
     <Reference Include="UXC.Core.Data.Serialization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UXC.Core.Data.Serialization.1.2.0\lib\net452\UXC.Core.Data.Serialization.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\UXC.Core.Data.Serialization.2.0.0-alpha1\lib\net452\UXC.Core.Data.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="UXC.Core.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXC.Core.Interfaces.1.4.0\lib\net452\UXC.Core.Interfaces.dll</HintPath>
@@ -91,8 +90,14 @@
       <HintPath>..\..\packages\UXI.Filters.1.1.0\lib\net45\UXI.Filters.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="UXI.GazeFilter, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UXI.GazeFilter.2.2.0\lib\net45\UXI.GazeFilter.dll</HintPath>
+    </Reference>
     <Reference Include="UXI.GazeToolkit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXI.GazeToolkit.2.0.0\lib\net45\UXI.GazeToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="UXI.GazeToolkit.Serialization, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UXI.GazeToolkit.Serialization.2.1.0\lib\net45\UXI.GazeToolkit.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="UXI.Serialization, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UXI.Serialization.3.0.0\lib\net45\UXI.Serialization.dll</HintPath>
@@ -103,14 +108,36 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\DataSerializationFilterConfiguration.cs" />
+    <Compile Include="Configuration\EyeTrackerLogsFilterConfiguration.cs" />
+    <Compile Include="Configuration\UXCDataSerializationFilterConfiguration.cs" />
+    <Compile Include="CorrectGazeDataPositionsContext.cs" />
+    <Compile Include="CorrectGazeDataPositionsOptions.cs" />
+    <Compile Include="Data\DisplayAreaChangedLogMessage.cs" />
+    <Compile Include="Data\LogMessage.cs" />
+    <Compile Include="Data\TrackBoxChangedLogMessage.cs" />
+    <Compile Include="Converters\EyePosition3DFrom3DRelativeConverter.cs" />
+    <Compile Include="GazeCorrectionResult.cs" />
     <Compile Include="Data\DisplayArea.cs" />
     <Compile Include="Data\TrackBoxCoords.cs" />
+    <Compile Include="Converters\GazePoint3DFrom2DConverter.cs" />
+    <Compile Include="Hexahedron.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\Csv\EyeDataCorrectionResultCsvConverter.cs" />
+    <Compile Include="Serialization\Csv\GazeDataCorrectionResultCsvConverter.cs" />
+    <Compile Include="Serialization\Csv\PositionCorrectionResultCsvConverter.cs" />
+    <Compile Include="Serialization\Json\DisplayAreaChangedLogMessageJsonConverter.cs" />
+    <Compile Include="Serialization\Json\DisplayAreaJsonConverter.cs" />
+    <Compile Include="Serialization\Json\LogMessageJsonConverter.cs" />
+    <Compile Include="Serialization\Json\TrackBoxChangedLogMessageJsonConverter.cs" />
+    <Compile Include="Utils\TrilinearInterpolation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
