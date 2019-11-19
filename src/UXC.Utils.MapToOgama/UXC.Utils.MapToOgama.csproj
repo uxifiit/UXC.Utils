@@ -7,7 +7,7 @@
     <ProjectGuid>{44FE27B8-A168-43D7-8E61-B4F7AE2880D3}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>UXC.Utils.MapToOgama</RootNamespace>
-    <AssemblyName>Map2Ogama</AssemblyName>
+    <AssemblyName>MapToOgama</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
