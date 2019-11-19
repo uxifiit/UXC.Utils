@@ -27,10 +27,12 @@ namespace UXC.Utils.MapToOgama.Serialization.Csv
             writer.WriteField(data.TrialID);
             writer.WriteField(data.TrialImage);
             writer.WriteField(data.Time);
-
-            serializer.Serialize<Point2>(writer, data.PupilDia);
-            serializer.Serialize<Point2>(writer, data.GazePos);
-            serializer.Serialize<Point2>(writer, data.MousePos);
+            writer.WriteField(data.PupilDiaX);
+            writer.WriteField(data.PupilDiaY);
+            writer.WriteField(data.GazePosX);
+            writer.WriteField(data.GazePosY);
+            writer.WriteField(data.MousePosX);
+            writer.WriteField(data.MousePosY);
         }
 
         protected override void WriteHeader(CsvWriter writer, CsvSerializerContext serializer, CsvHeaderNamingContext naming)
@@ -40,10 +42,12 @@ namespace UXC.Utils.MapToOgama.Serialization.Csv
             writer.WriteField(naming.Get(nameof(OgamaData.TrialID)));
             writer.WriteField(naming.Get(nameof(OgamaData.TrialImage)));
             writer.WriteField(naming.Get(nameof(OgamaData.Time)));
-
-            serializer.WriteHeader<Point2>(writer, naming, nameof(OgamaData.PupilDia));
-            serializer.WriteHeader<Point2>(writer, naming, nameof(OgamaData.GazePos));
-            serializer.WriteHeader<Point2>(writer, naming, nameof(OgamaData.MousePos));
+            writer.WriteField(naming.Get(nameof(OgamaData.PupilDiaX)));
+            writer.WriteField(naming.Get(nameof(OgamaData.PupilDiaY)));
+            writer.WriteField(naming.Get(nameof(OgamaData.GazePosX)));
+            writer.WriteField(naming.Get(nameof(OgamaData.GazePosY)));
+            writer.WriteField(naming.Get(nameof(OgamaData.MousePosX)));
+            writer.WriteField(naming.Get(nameof(OgamaData.MousePosY)));
         }
     }
 }

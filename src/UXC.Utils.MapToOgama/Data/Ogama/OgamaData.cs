@@ -14,10 +14,10 @@ namespace UXC.Utils.MapToOgama.Data.Ogama
                 int trialSequence,
                 int trialID,
                 string trialImage,
-                double time,
-                Point2 pupilDia,
-                Point2 gazePos,
-                Point2 mousePos
+                float time,
+                Point2f pupilDia,
+                Point2f gazePos,
+                Point2f mousePos
             )
         {
             SubjectName = subjectName;
@@ -25,9 +25,12 @@ namespace UXC.Utils.MapToOgama.Data.Ogama
             TrialID = trialID;
             TrialImage = trialImage;
             Time = time;
-            PupilDia = pupilDia;
-            GazePos = gazePos;
-            MousePos = mousePos;
+            PupilDiaX = (float)pupilDia.X;
+            PupilDiaY = (float)pupilDia.Y;
+            GazePosX = (float)gazePos.X;
+            GazePosY = (float)gazePos.Y;
+            MousePosX = (float)mousePos.X;
+            MousePosY = (float)mousePos.Y;
         }
 
         public string SubjectName { get; }
@@ -38,12 +41,18 @@ namespace UXC.Utils.MapToOgama.Data.Ogama
 
         public string TrialImage { get; }
 
-        public double Time { get; }
+        public float Time { get; }
 
-        public Point2 PupilDia { get; }
+        public float PupilDiaX { get; }
 
-        public Point2 GazePos { get; }
+        public float PupilDiaY { get; }
 
-        public Point2 MousePos { get; }
+        public float GazePosX { get; }
+
+        public float GazePosY { get; }
+
+        public float MousePosX { get; }
+
+        public float MousePosY  { get; }
     }
 }

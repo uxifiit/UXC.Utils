@@ -47,7 +47,7 @@ namespace UXC.Utils.MapToOgama.Data.Ogama
                 _state.TrialSequence,
                 _state.TrialID,
                 _state.TrialImage,
-                (_state.Timestamp - referenceTimestamp).TotalMilliseconds,
+                (float)(_state.Timestamp - referenceTimestamp).TotalMilliseconds,
                 _state.PupilDia,
                 _state.GazePos,
                 _state.MousePos

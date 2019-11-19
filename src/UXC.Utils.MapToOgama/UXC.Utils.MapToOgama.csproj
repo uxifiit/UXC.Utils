@@ -107,6 +107,7 @@
     <Compile Include="Configuration\OgamaDataSerializationFilterConfiguration.cs" />
     <Compile Include="Configuration\ScreenResolutionFilterConfiguration.cs" />
     <Compile Include="Configuration\UXCDataSerializationFilterConfiguration.cs" />
+    <Compile Include="Data\Ogama\Point2f.cs" />
     <Compile Include="Data\SessionStepEvent.cs" />
     <Compile Include="MapToOgamaContext.cs" />
     <Compile Include="Data\Ogama\OgamaData.cs" />
